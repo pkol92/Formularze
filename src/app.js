@@ -161,29 +161,29 @@ labelCheck3.innerText = "romans";
 
 divCheckbox.append(legendCheckbox, check1, labelCheck1, check2, labelCheck2, check3, labelCheck3);
 
-const spanCheckboxResult = document.createElement("span");
-spanCheckboxResult.setAttribute("id", "checkResult");
-divCheckbox.append(spanCheckboxResult);
+// const spanCheckboxResult = document.createElement("span");
+// spanCheckboxResult.setAttribute("id", "checkResult");
+// divCheckbox.append(spanCheckboxResult);
 
-const checkboxResult = document.querySelector("#checkResult");
-// const divCh = document.querySelector(".check");
-const checkboxGroup = form.querySelectorAll("input[name=bookCategory]");
+// const checkboxResult = document.querySelector("#checkResult");
+// // const divCh = document.querySelector(".check");
+// const checkboxGroup = form.querySelectorAll("input[name=bookCategory]");
 // const spanCheckboxResult = document.createElement("span");
 // spanCheckboxResult.setAttribute("id", "checkResult");
 // const checkboxResult = document.querySelector("#checkResult");
 
 //do naprawy:
-for (const check of checkboxGroup) {
-    check.addEventListener("change", e => {
-        // let checkedCount = 0;
-        // for (const check of checkboxGroup) {
-        //     if (check.checked) {
-        //         checkedCount++;
-        //     }
-        // }
-        spanCheckboxResult.innerText = check.value;
-    });
-}
+// for (const check of checkboxGroup) {
+//     check.addEventListener("change", e => {
+//         // let checkedCount = 0;
+//         // for (const check of checkboxGroup) {
+//         //     if (check.checked) {
+//         //         checkedCount++;
+//         //     }
+//         // }
+//         spanCheckboxResult.innerText = check.value;
+//     });
+// }
 
 //create button submit
 const button = document.createElement("button");
@@ -220,16 +220,21 @@ function addBook() {
     const author = row.insertCell();
     author.innerHTML = document.querySelector("#author").value;
 
-    const cell3 = row.insertCell();
-    cell3.innerText = "2";
-    const cell4 = row.insertCell();
-    cell4.innerText = "krym";
-}
+    const radios = row.insertCell();
+    radios.innerText = document.querySelector('input[name="important"]:checked').value;
+
+    const checkboxs = row.insertCell();
+    const checked = []
+    const pickCheckbox = document.querySelectorAll('input[name="bookCategory"]:checked')
+    pickCheckbox.forEach((checkbox) => {
+        checked.push(checkbox.value)
+    });
+    checkboxs.innerText = checked;
+};
 
 button.addEventListener("click", e => {
     e.preventDefault();
-    // document.querySelector("#bookForm").sumbit();
-    //dorobić funkcję dodawania do tabeli
     addBook();
+    document.querySelector("#bookForm").reset();
 })
 
