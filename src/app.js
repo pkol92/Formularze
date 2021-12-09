@@ -202,7 +202,7 @@ function addBook() {
     radios.innerText = document.querySelector('input[name="important"]:checked').value;
 
     const checkboxs = row.insertCell();
-    const checked = []
+    const checked = [];
     const pickCheckbox = document.querySelectorAll('input[name="bookCategory"]:checked')
     pickCheckbox.forEach((checkbox) => {
         checked.push(checkbox.value)
@@ -211,8 +211,6 @@ function addBook() {
 };
 
 function validationForm() {
-    // e.preventDefault();
-
     let formErrors = [];
 
     if (bookValue.value.length === 0) {
@@ -243,13 +241,9 @@ function validationForm() {
         alert.innerHTML = "";
         formErrors = [];
         return true;
-        // e.preventDefault();
-        // e.target.submit();
-        // addBook();
-        // document.querySelector("#bookForm").reset();
     }
-
 };
+
 button.addEventListener("click", e => {
     e.preventDefault();
     if (validationForm()) {
