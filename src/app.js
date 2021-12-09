@@ -8,54 +8,57 @@ document.querySelector("#bookForm").required = true;
 
 const inputBook = document.createElement("input");
 inputBook.setAttribute("id", "bookTitle");
-inputBook.required = true;
+// inputBook.required = true;
+// inputBook.setAttribute("pattern", ".{1,}");
+// // do naprawy
+// inputBook.addEventListener("input", e => {
+//     let input = document.querySelector("#bookTitle");
+//     let val = input.value;
+//     const reg = /^[a-zA-Z0-9]{1,}$/g; 
+//     const spanBook = document.createElement("span");
+//     spanBook.innerText = "Tytuł książki musi zawierać co najmniej 1 znak"
+//     //dorobić nad polem że nie przeszło
+//     if (!reg.test(val)) {
+//         input.after(spanBook);
+//     }
 
-// do naprawy
-inputBook.addEventListener("input", e => {
-    let input = document.querySelector("#bookTitle");
-    let val = input.value;
-    const reg = /^[a-zA-Z0-9]{1,}$/g; 
-
-    //dorobić nad polem że nie przeszło
-    if (!reg.test(val)) {
-        alert("uwaga");
-    }
-
-    // if (!reg.test(val)) {
-    //     input.classList.add("field-error");
-    // } else {
-    //     input.classList.remove("field-error");
-    // }
-});
+//     // if (!reg.test(val)) {
+//     //     input.classList.add("field-error");
+//     // } else {
+//     //     input.classList.remove("field-error");
+//     // }
+// });
 
 const inputAuthor = document.createElement("input");
 inputAuthor.setAttribute("id", "author");
-inputAuthor.required = true;
-inputAuthor.setAttribute("pattern", "[a-zA-Z] {3}");
+// inputAuthor.required = true;
+// inputAuthor.setAttribute("pattern", ".{3,}");
 
-inputAuthor.addEventListener("input", e => {
-    let input = document.querySelector("#author");
-    const val = input.value;
-    const reg = /^[a-zA-Z ]{3,}$/g; 
+// inputAuthor.addEventListener("input", e => {
+//     let input = document.querySelector("#author");
+//     const val = input.value;
+//     const reg = /^[a-zA-Z ]{3,}$/g; 
+//     const spanAuthor = document.createElement("span");
+//     spanAuthor.innerText = "Pole autor musi zawierać minimum 3 znaki"
 
-    //dorobić nad polem że nie przeszło
-    // if (!reg.test(val)) {
-    //     alert("uwaga");
-    // }
-    // if (!reg.test(val)) {
-    //     input.classList.add("field-error");
-    // } else {
-    //     input.classList.remove("field-error");
-    // }
-});
+//     if (!reg.test(val)) {
+//         input.after(spanAuthor);
+//     }
+//     // if (!reg.test(val)) {
+//     //     input.classList.add("field-error");
+//     // } else {
+//     //     input.classList.remove("field-error");
+//     // }
+// });
 
 const labelBook = document.createElement("label");
 labelBook.innerText = "Tytuł książki (min. 1 znak):"
 const labelAuthor = document.createElement("label");
-labelAuthor.innerText = "Autor (min. 3 znaki nie będące cyframi):"
+labelAuthor.innerText = "Autor (min. 3 znaki):"
 
 form.append(labelBook,inputBook, labelAuthor, inputAuthor);
 
+//create radios
 const divRadio = document.createElement("div");
 const legendRadio = document.createElement("legend");
 legendRadio.innerText = "Priorytet przeczytania:"
@@ -114,20 +117,6 @@ form.append(divRadio);
 
 const resultRadio = document.querySelector("#radioResult");
 
-// for (const radio of radioGroup) {
-//     radio.addEventListener("change", e => {
-//         // for (const radio of radioGroup) {
-//         //     if (radio.checked) {
-//         //         // resultElement.innerText = radio.nextElementSibling.value;
-//         //         spanRadio.innerText = radio.value
-//         //         break;
-//         //     }
-//         // }
-//     });
-// }
-
-
-
 //create checkbox
 const divCheckbox = document.createElement("div");
 form.append(divCheckbox);
@@ -161,37 +150,16 @@ labelCheck3.innerText = "romans";
 
 divCheckbox.append(legendCheckbox, check1, labelCheck1, check2, labelCheck2, check3, labelCheck3);
 
-// const spanCheckboxResult = document.createElement("span");
-// spanCheckboxResult.setAttribute("id", "checkResult");
-// divCheckbox.append(spanCheckboxResult);
-
-// const checkboxResult = document.querySelector("#checkResult");
-// // const divCh = document.querySelector(".check");
-// const checkboxGroup = form.querySelectorAll("input[name=bookCategory]");
-// const spanCheckboxResult = document.createElement("span");
-// spanCheckboxResult.setAttribute("id", "checkResult");
-// const checkboxResult = document.querySelector("#checkResult");
-
-//do naprawy:
-// for (const check of checkboxGroup) {
-//     check.addEventListener("change", e => {
-//         // let checkedCount = 0;
-//         // for (const check of checkboxGroup) {
-//         //     if (check.checked) {
-//         //         checkedCount++;
-//         //     }
-//         // }
-//         spanCheckboxResult.innerText = check.value;
-//     });
-// }
+//create div with alert
+const divAlert = document.createElement("div");
+divAlert.setAttribute("id", "alert");
+form.append(divAlert);
 
 //create button submit
 const button = document.createElement("button");
 button.setAttribute("type", "submit");
 button.innerText = "Dodaj książkę";
 form.append(button);
-
-
 
 //create table of book
 const divTable = document.createElement("div");
@@ -211,12 +179,22 @@ function tableTitles(fieldTitles) {
 
 tableTitles(["Tytuł książki", "Autor", "Priorytet przeczytania", "Kategoria"]);
 
+//create function which shows alert validation
+const formValidation = document.querySelector("#bookForm"); 
+const alert = document.querySelector("#alert");
+const bookValue = document.querySelector("#bookTitle");
+const authorValue = document.querySelector("#author");
+// const radioCheck = document.querySelector('input[name="important"]:checked');
+// const checkboxCheck = document.querySelectorAll('input[name="bookCategory"]');
+
+//create funcktion which add book to the table 
 function addBook() {
     const tbl = document.querySelector("#bookTable");
     const row = tbl.insertRow();
 
     const book = row.insertCell();
     book.innerHTML = document.querySelector("#bookTitle").value;
+
     const author = row.insertCell();
     author.innerHTML = document.querySelector("#author").value;
 
@@ -232,9 +210,50 @@ function addBook() {
     checkboxs.innerText = checked;
 };
 
+function validationForm() {
+    // e.preventDefault();
+
+    let formErrors = [];
+
+    if (bookValue.value.length === 0) {
+        formErrors.push("Wypełnij poprawnie pole z imieniem");
+    }
+
+    if (authorValue.value.length < 3) {
+        formErrors.push("Wypełnij poprawnie pole z autorem książki");
+    }
+    
+    if (!(document.querySelector('input[name="important"]:checked'))) {
+        formErrors.push("Zaznacz priorytet przeczytania");
+    }
+
+    if (document.querySelectorAll('input[name="bookCategory"]:checked').length === 0) {
+        formErrors.push("Wybierz minimum jedną kategorię");
+    }
+
+    if (formErrors.length) { 
+        alert.innerHTML = `
+            <h3 class="form-error-title">Przed dodaniem książki proszę poprawić błędy:</h3>
+            <ul class="form-error-list">
+                ${formErrors.map(el => `<li>${el}</li>`).join("")}
+            </ul>
+        `;
+        return false;
+    } else {
+        alert.innerHTML = "";
+        formErrors = [];
+        return true;
+        // e.preventDefault();
+        // e.target.submit();
+        // addBook();
+        // document.querySelector("#bookForm").reset();
+    }
+
+};
 button.addEventListener("click", e => {
     e.preventDefault();
-    addBook();
-    document.querySelector("#bookForm").reset();
-})
-
+    if (validationForm()) {
+        addBook();
+        document.querySelector("#bookForm").reset();
+    }
+});
