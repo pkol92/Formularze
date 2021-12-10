@@ -1,67 +1,38 @@
 const root = document.getElementById("libraryApp");
-const div = document.createElement("div");
+
+//create form
 const form = document.createElement("form");
 form.setAttribute("id", "bookForm");
-root.append(div);
-div.append(form);
+root.append(form);
 document.querySelector("#bookForm").required = true;
 
+//create book title
+const divBook = document.createElement("div");
 const inputBook = document.createElement("input");
 inputBook.setAttribute("id", "bookTitle");
-// inputBook.required = true;
-// inputBook.setAttribute("pattern", ".{1,}");
-// // do naprawy
-// inputBook.addEventListener("input", e => {
-//     let input = document.querySelector("#bookTitle");
-//     let val = input.value;
-//     const reg = /^[a-zA-Z0-9]{1,}$/g; 
-//     const spanBook = document.createElement("span");
-//     spanBook.innerText = "Tytuł książki musi zawierać co najmniej 1 znak"
-//     //dorobić nad polem że nie przeszło
-//     if (!reg.test(val)) {
-//         input.after(spanBook);
-//     }
-
-//     // if (!reg.test(val)) {
-//     //     input.classList.add("field-error");
-//     // } else {
-//     //     input.classList.remove("field-error");
-//     // }
-// });
-
-const inputAuthor = document.createElement("input");
-inputAuthor.setAttribute("id", "author");
-// inputAuthor.required = true;
-// inputAuthor.setAttribute("pattern", ".{3,}");
-
-// inputAuthor.addEventListener("input", e => {
-//     let input = document.querySelector("#author");
-//     const val = input.value;
-//     const reg = /^[a-zA-Z ]{3,}$/g; 
-//     const spanAuthor = document.createElement("span");
-//     spanAuthor.innerText = "Pole autor musi zawierać minimum 3 znaki"
-
-//     if (!reg.test(val)) {
-//         input.after(spanAuthor);
-//     }
-//     // if (!reg.test(val)) {
-//     //     input.classList.add("field-error");
-//     // } else {
-//     //     input.classList.remove("field-error");
-//     // }
-// });
-
+inputBook.setAttribute("placeholder", "np. Javascript od podstaw");
 const labelBook = document.createElement("label");
 labelBook.innerText = "Tytuł książki (min. 1 znak):"
+divBook.append(labelBook, inputBook);
+
+//create author title
+const divAuthor = document.createElement("div");
+const inputAuthor = document.createElement("input");
+inputAuthor.setAttribute("id", "author");
+inputAuthor.setAttribute("placeholder", "np. Marcin Moskala");
 const labelAuthor = document.createElement("label");
 labelAuthor.innerText = "Autor (min. 3 znaki):"
+divAuthor.append(labelAuthor, inputAuthor);
 
-form.append(labelBook,inputBook, labelAuthor, inputAuthor);
+form.append(divBook, divAuthor);
 
 //create radios
 const divRadio = document.createElement("div");
+divRadio.setAttribute("id", "divRadio");
 const legendRadio = document.createElement("legend");
-legendRadio.innerText = "Priorytet przeczytania:"
+legendRadio.innerText = "Priorytet przeczytania:";
+const radioButtons = document.createElement("div");
+radioButtons.setAttribute("id", "radioButtons");
 
 const radio1 = document.createElement("input");
 radio1.setAttribute("type", "radio");
@@ -109,17 +80,19 @@ label5.setAttribute("for", "5");
 label5.innerText = "5";
 
 const radioGroup = divRadio.querySelectorAll("input[name=important]");
-const spanRadio = document.createElement("span");
-spanRadio.setAttribute("id", "radioResult");
+// const spanRadio = document.createElement("span");
+// spanRadio.setAttribute("id", "radioResult");
+radioButtons.append(radio1, label1, radio2, label2, radio3, label3, radio4, label4, radio5, label5);
 
-divRadio.append(legendRadio, radio1, label1, radio2, label2, radio3, label3, radio4, label4, radio5, label5, spanRadio);
+divRadio.append(legendRadio, radioButtons );
 form.append(divRadio);
-
-const resultRadio = document.querySelector("#radioResult");
 
 //create checkbox
 const divCheckbox = document.createElement("div");
+divCheckbox.setAttribute("id", "divCheckbox");
 form.append(divCheckbox);
+const checkboxButtons = document.createElement("div");
+checkboxButtons.setAttribute("id", "checkboxButtons");
 
 const legendCheckbox = document.createElement("legend");
 legendCheckbox.innerText = "Kategoria:";
@@ -148,7 +121,8 @@ const labelCheck3 = document.createElement("label");
 labelCheck3.setAttribute("class", "checkbox");
 labelCheck3.innerText = "romans";
 
-divCheckbox.append(legendCheckbox, check1, labelCheck1, check2, labelCheck2, check3, labelCheck3);
+checkboxButtons.append(check1, labelCheck1, check2, labelCheck2, check3, labelCheck3);
+divCheckbox.append(legendCheckbox, checkboxButtons);
 
 //create div with alert
 const divAlert = document.createElement("div");
@@ -159,10 +133,16 @@ form.append(divAlert);
 const button = document.createElement("button");
 button.setAttribute("type", "submit");
 button.innerText = "Dodaj książkę";
-form.append(button);
+
+//create div for button
+const divButton = document.createElement("div");
+divButton.setAttribute("id", "divButton");
+divButton.append(button);
+form.append(divButton);
 
 //create table of book
 const divTable = document.createElement("div");
+divTable.setAttribute("id", "divTable");
 root.append(divTable);
 
 const table = document.createElement("table");
@@ -184,8 +164,6 @@ const formValidation = document.querySelector("#bookForm");
 const alert = document.querySelector("#alert");
 const bookValue = document.querySelector("#bookTitle");
 const authorValue = document.querySelector("#author");
-// const radioCheck = document.querySelector('input[name="important"]:checked');
-// const checkboxCheck = document.querySelectorAll('input[name="bookCategory"]');
 
 //create funcktion which add book to the table 
 function addBook() {
@@ -210,6 +188,7 @@ function addBook() {
     checkboxs.innerText = checked;
 };
 
+//create validation function
 function validationForm() {
     let formErrors = [];
 
@@ -231,7 +210,7 @@ function validationForm() {
 
     if (formErrors.length) { 
         alert.innerHTML = `
-            <h3 class="form-error-title">Przed dodaniem książki proszę poprawić błędy:</h3>
+            <h4 class="form-error-title">Przed dodaniem książki proszę poprawić błędy:</h4>
             <ul class="form-error-list">
                 ${formErrors.map(el => `<li>${el}</li>`).join("")}
             </ul>
@@ -244,6 +223,7 @@ function validationForm() {
     }
 };
 
+//create submit function
 button.addEventListener("click", e => {
     e.preventDefault();
     if (validationForm()) {
