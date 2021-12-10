@@ -1,4 +1,6 @@
-Projekt pozwala na napisanie własnej biblioteki książek z wykorzystaniem HTML, CSS oraz JavaScript,
+Projekt nie jest zakończony, trwa realizacja.
+
+Strona pozwala na napisanie własnej biblioteki książek z wykorzystaniem HTML, CSS oraz JavaScript,
 w której znajduje się formularz przyjmujący następujące pola:
 a) Tytuł książki (co najmniej 1 znak)
 b) Autor książki (co najmniej 3 znaki)
