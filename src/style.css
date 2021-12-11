@@ -1,5 +1,6 @@
 body {
-    font-size: 1rem;
+    font-size: 16px;
+    background-color: rgb(248, 244, 244);
 }
 
 #libraryApp {
@@ -14,6 +15,8 @@ body {
     grid-template-rows: 1fr;
     justify-items: center;
 }
+
+
 
 #divTable {
     padding: 1rem;
@@ -60,12 +63,16 @@ form div {
 
 button {
     font-weight: bold;
-    background-color:rgb(129, 238, 196);
+    background-color: indianred;
     padding: 0.5rem;
+    width: 40%;
+    color:rgb(36, 36, 31);
 }
 
 button:hover {
-    background-color: rgb(112, 207, 112);
+    /* background-color: rgb(112, 207, 112); */
+    color:lemonchiffon;
+    box-shadow: inset 0 0 1rem rgb(97, 75, 75);
 }
 
 #alert {
@@ -89,4 +96,65 @@ button:hover {
     margin: 0;
     padding-bottom: 1rem;
     padding-inline-start: 1rem;
+}
+
+#bookTable {
+    border: 1px solid orangered;
+    box-shadow: 0 0 1rem rgb(97, 75, 75);
+    /* border-collapse: collapse; */
+    /* table-layout: fixed; */
+    /* word-break: break-word; */
+    word-wrap: break-word;
+    /* width: 90%; */
+    /* padding: 0.5rem; */
+}
+
+#bookTable th {
+    padding: 1rem;
+    background-color: indianred;
+    vertical-align: middle;
+}
+
+#bookTable td {
+    /* word-break: break-word; */
+    padding: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
+    /* border-bottom: 1px solid black; */
+    
+}
+
+/* #bookTable tbody {
+    border-collapse: collapse;
+} */
+
+/* tbody tr {
+    border-bottom: 1px solid black;
+}  */
+
+legend, .label {
+    font-weight: bold;
+}
+
+@media screen and (max-width: 900px) {
+    #libraryApp {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }     
+
+    #divTable {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        font-size: 0.6rem;
+    }   
+
+    /* #bookTable {
+        width: 100%;
+    } */
+
+    #bookTable th {
+        padding: 0.5rem;
+    }
+
 }

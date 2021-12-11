@@ -12,6 +12,7 @@ const inputBook = document.createElement("input");
 inputBook.setAttribute("id", "bookTitle");
 inputBook.setAttribute("placeholder", "np. Javascript od podstaw");
 const labelBook = document.createElement("label");
+labelBook.setAttribute("class", "label");
 labelBook.innerText = "Tytuł książki (min. 1 znak):"
 divBook.append(labelBook, inputBook);
 
@@ -21,6 +22,7 @@ const inputAuthor = document.createElement("input");
 inputAuthor.setAttribute("id", "author");
 inputAuthor.setAttribute("placeholder", "np. Marcin Moskala");
 const labelAuthor = document.createElement("label");
+labelAuthor.setAttribute("class", "label");
 labelAuthor.innerText = "Autor (min. 3 znaki):"
 divAuthor.append(labelAuthor, inputAuthor);
 
@@ -80,8 +82,6 @@ label5.setAttribute("for", "5");
 label5.innerText = "5";
 
 const radioGroup = divRadio.querySelectorAll("input[name=important]");
-// const spanRadio = document.createElement("span");
-// spanRadio.setAttribute("id", "radioResult");
 radioButtons.append(radio1, label1, radio2, label2, radio3, label3, radio4, label4, radio5, label5);
 
 divRadio.append(legendRadio, radioButtons );
@@ -183,10 +183,50 @@ function addBook() {
     const checked = [];
     const pickCheckbox = document.querySelectorAll('input[name="bookCategory"]:checked')
     pickCheckbox.forEach((checkbox) => {
-        checked.push(checkbox.value)
+        let category = checkbox.value
+        checked.push((" " + category))
     });
     checkboxs.innerText = checked;
+
+    const newBookObject = {
+        title: `${document.querySelector("#bookTitle").value}`,
+        author: `${document.querySelector("#author").value}`,
+        radio: `${document.querySelector('input[name="important"]:checked').value}`,
+        checkbox: `${checked}`
+    };
+
+    addToLocalstorage(newBookObject);
 };
+
+//create function which add data to localstorage
+function addToLocalstorage(newBook) {
+    const existing = localStorage.getItem("data")? JSON.parse(localStorage.getItem("data")) : [];
+    existing.push(newBook);
+    localStorage.setItem("data", JSON.stringify(existing));
+}
+
+
+//create function which get data from localstorage
+function getData() {
+    let data = localStorage.getItem("data")? JSON.parse(localStorage.getItem("data")) : [];
+
+    for (let i=0; i<data.length; i++){
+        let tbl = document.querySelector("#bookTable");
+        let row = tbl.insertRow();
+
+        let book = row.insertCell();
+        let author = row.insertCell();
+        let radios = row.insertCell();
+        let checkboxs = row.insertCell();
+
+        book.innerHTML = data[i].title;
+        author.innerHTML = data[i].author;
+        radios.innerText = data[i].radio;
+        checkboxs.innerHTML = data[i].checkbox;
+    }  
+}
+
+getData();
 
 //create validation function
 function validationForm() {
