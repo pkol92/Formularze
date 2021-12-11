@@ -12,6 +12,7 @@ const inputBook = document.createElement("input");
 inputBook.setAttribute("id", "bookTitle");
 inputBook.setAttribute("placeholder", "np. Javascript od podstaw");
 const labelBook = document.createElement("label");
+labelBook.setAttribute("class", "label");
 labelBook.innerText = "Tytuł książki (min. 1 znak):"
 divBook.append(labelBook, inputBook);
 
@@ -21,6 +22,7 @@ const inputAuthor = document.createElement("input");
 inputAuthor.setAttribute("id", "author");
 inputAuthor.setAttribute("placeholder", "np. Marcin Moskala");
 const labelAuthor = document.createElement("label");
+labelAuthor.setAttribute("class", "label");
 labelAuthor.innerText = "Autor (min. 3 znaki):"
 divAuthor.append(labelAuthor, inputAuthor);
 
