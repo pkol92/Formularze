@@ -203,13 +203,13 @@ function addToLocalstorage(newBook) {
     const existing = localStorage.getItem("data")? JSON.parse(localStorage.getItem("data")) : [];
     existing.push(newBook);
     localStorage.setItem("data", JSON.stringify(existing));
-}
+};
 
 //create function which get data from localstorage
 function getData() {
     let data = localStorage.getItem("data")? JSON.parse(localStorage.getItem("data")) : [];
 
-    for (let i=0; i<data.length; i++){
+    for (let i=0; i<data.length; i++) {
         let tbl = document.querySelector("#bookTable");
         let row = tbl.insertRow();
 
@@ -223,7 +223,7 @@ function getData() {
         radios.innerText = data[i].radio;
         checkboxs.innerHTML = data[i].checkbox;
     }  
-}
+};
 
 getData();
 
