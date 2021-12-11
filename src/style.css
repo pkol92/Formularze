@@ -1,5 +1,6 @@
 body {
-    font-size: 1rem;
+    font-size: 16px;
+    background-color: rgb(248, 244, 244);
 }
 
 #libraryApp {
@@ -13,6 +14,19 @@ body {
     grid-template-columns: 3fr 4fr;
     grid-template-rows: 1fr;
     justify-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    #libraryApp {
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr auto;
+    }     
+    #divTable {
+        display: grid;
+        align-content: center;
+        justify-items: center;
+        font-size: 0.6rem;
+    }   
 }
 
 #divTable {
@@ -89,4 +103,26 @@ button:hover {
     margin: 0;
     padding-bottom: 1rem;
     padding-inline-start: 1rem;
+}
+
+#bookTable {
+    border: 1px solid orangered;
+    box-shadow: 0 0 1rem rgb(97, 75, 75);
+    table-layout: fixed;
+    word-break: break-word;
+    width: 90%;
+    /* padding: 0.5rem; */
+}
+
+#bookTable th {
+    padding: 0.3rem;
+    background-color: indianred;
+    vertical-align: middle;
+}
+
+#bookTable td {
+    word-break: break-word;
+    padding: 0.5rem;
+    vertical-align: middle;
+    text-align: center;
 }
