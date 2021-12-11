@@ -154,8 +154,8 @@ function tableTitles(fieldTitles) {
     let th = document.createElement('th');
     th.appendChild(document.createTextNode(fieldTitle));
     table.appendChild(th);
-});
-}
+    });
+};
 
 tableTitles(["Tytuł książki", "Autor", "Priorytet przeczytania", "Kategoria"]);
 
@@ -204,7 +204,6 @@ function addToLocalstorage(newBook) {
     existing.push(newBook);
     localStorage.setItem("data", JSON.stringify(existing));
 }
-
 
 //create function which get data from localstorage
 function getData() {
