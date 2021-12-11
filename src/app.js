@@ -168,6 +168,8 @@ const bookValue = document.querySelector("#bookTitle");
 const authorValue = document.querySelector("#author");
 
 //create funcktion which add book to the table 
+
+
 function addBook() {
     const tbl = document.querySelector("#bookTable");
     const row = tbl.insertRow();
@@ -185,10 +187,43 @@ function addBook() {
     const checked = [];
     const pickCheckbox = document.querySelectorAll('input[name="bookCategory"]:checked')
     pickCheckbox.forEach((checkbox) => {
-        checked.push(checkbox.value)
+        let category = checkbox.value
+        checked.push((" " + category))
     });
     checkboxs.innerText = checked;
+
+   
+    let data = [];
+    data.push(document.querySelector("#bookTitle").value, document.querySelector("#author").value, document.querySelector('input[name="important"]:checked').value, checked);
+
+    localStorage.setItem("data", JSON.stringify(data)); 
+    
+
+       
+    
 };
+
+//create function which get data from localstorage
+function getData() {
+    let data = JSON.parse(localStorage.getItem("data"));
+
+    let tbl = document.querySelector("#bookTable");
+    let row = tbl.insertRow();
+
+    let book = row.insertCell();
+    book.innerHTML = data[0]
+
+    let author = row.insertCell();
+    author.innerHTML = data[1]
+
+    let radios = row.insertCell();
+    radios.innerText = data[2]
+
+    let checkboxs = row.insertCell();
+    checkboxs.innerHTML = data[3];
+}
+
+getData();
 
 //create validation function
 function validationForm() {

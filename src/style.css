@@ -105,7 +105,7 @@ button:hover {
     /* table-layout: fixed; */
     /* word-break: break-word; */
     word-wrap: break-word;
-    width: 90%;
+    /* width: 90%; */
     /* padding: 0.5rem; */
 }
 
@@ -149,9 +149,9 @@ legend, .label {
         font-size: 0.6rem;
     }   
 
-    #bookTable {
+    /* #bookTable {
         width: 100%;
-    }
+    } */
 
     #bookTable th {
         padding: 0.5rem;
