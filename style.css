@@ -4,19 +4,11 @@ body {
 }
 
 #libraryApp {
-    /* display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-evenly;
-    padding-top: 1rem;
-    padding-bottom: 1rem; */
     display: grid;
     grid-template-columns: 3fr 4fr;
     grid-template-rows: 1fr;
     justify-items: center;
 }
-
-
 
 #divTable {
     padding: 1rem;
@@ -36,17 +28,10 @@ form div {
     gap: 0.5rem 0;
 }
 
-/* #divRadio, #divCheckbox {
-    display: flex;
-    flex-direction: column;
-    /* justify-content: space-between; */
-
 #radioButtons {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: repeat(5, auto 1fr);
-    /* flex-direction: row;
-    justify-content: space-between; */
 }
 
 #checkboxButtons {
@@ -70,7 +55,6 @@ button {
 }
 
 button:hover {
-    /* background-color: rgb(112, 207, 112); */
     color:lemonchiffon;
     box-shadow: inset 0 0 1rem rgb(97, 75, 75);
 }
@@ -79,15 +63,11 @@ button:hover {
     display: flex;
     flex-direction: column;
     color: red;
-    /* border: 1px solid red; */
-    /* box-shadow: 0 0 0.5rem red; */
-    /* padding: 1rem; */
 }
 
 #alert h4 {
     margin: 0;
     display: flex;
-    /* padding: 1rem; */
 }
 
 #alert ul {
@@ -101,12 +81,7 @@ button:hover {
 #bookTable {
     border: 1px solid orangered;
     box-shadow: 0 0 1rem rgb(97, 75, 75);
-    /* border-collapse: collapse; */
-    /* table-layout: fixed; */
-    /* word-break: break-word; */
     word-wrap: break-word;
-    /* width: 90%; */
-    /* padding: 0.5rem; */
 }
 
 #bookTable th {
@@ -116,27 +91,17 @@ button:hover {
 }
 
 #bookTable td {
-    /* word-break: break-word; */
     padding: 0.5rem;
     vertical-align: middle;
     text-align: center;
-    /* border-bottom: 1px solid black; */
-    
 }
-
-/* #bookTable tbody {
-    border-collapse: collapse;
-} */
-
-/* tbody tr {
-    border-bottom: 1px solid black;
-}  */
 
 legend, .label {
     font-weight: bold;
 }
 
 @media screen and (max-width: 900px) {
+
     #libraryApp {
         grid-template-columns: 1fr;
         grid-template-rows: 1fr auto;
@@ -149,12 +114,7 @@ legend, .label {
         font-size: 0.6rem;
     }   
 
-    /* #bookTable {
-        width: 100%;
-    } */
-
     #bookTable th {
         padding: 0.5rem;
     }
-
 }
