@@ -11,3 +11,5 @@ książkę w tabeli i czyści formularz.
 
 Cała tabela zapisuje się w localstorage (przy ponownym otworzeniu przeglądarki zostaje
 załadowana ponownie i wyświetlona z takim samym stanem jak była przy zamknięciu).
+
+Strona dostępna pod linkiem: https://pkol92.github.io/Formularze/
